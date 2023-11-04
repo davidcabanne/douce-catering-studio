@@ -9,6 +9,7 @@ const Modal = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(85, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
   opacity: 0;
   pointer-events: none;
   z-index: 200;
@@ -27,12 +28,13 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   gap: ${_var.marginS};
+  padding: ${_var.marginM};
 
   & p,
   a,
   a:visited {
     color: ${_var.black};
-    font-size: 48px;
+    font-size: clamp(32px, 5vw, 48px);
     font-weight: 500;
   }
 
@@ -49,7 +51,7 @@ const Container = styled.div`
     & p,
     a,
     a:visited {
-      font-size: 24px;
+      font-size: clamp(16px, 5vw, 32px);
       font-weight: 500;
     }
 
