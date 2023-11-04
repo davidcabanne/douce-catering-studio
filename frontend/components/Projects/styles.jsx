@@ -118,5 +118,5 @@ export const Ul = styled.ul`
   width: 100%;
   margin-top: ${_var.marginS};
   margin-left: 16px;
-  list-style-type: disc;
+  list-style: "- ";
 `;

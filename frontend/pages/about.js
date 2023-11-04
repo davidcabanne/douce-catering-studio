@@ -35,7 +35,7 @@ export default function About({ content }) {
               rel="noopener noreferrer"
               style={{ color: "inherit", cursor: "pointer" }}
             >
-              <h3 style={{ marginTop: `${_var.marginM}` }}>contact us!</h3>
+              <h3 style={{ marginTop: `${_var.marginL}` }}>contact us!</h3>
             </a>
           </div>
           <div>

@@ -77,6 +77,6 @@ export const Grid = styled.div`
     margin-left: 16px;
     display: flex;
     flex-direction: column;
-    gap: ${_var.marginM};
+    gap: ${_var.marginS};
   }
 `;
