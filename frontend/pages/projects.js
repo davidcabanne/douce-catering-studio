@@ -63,10 +63,10 @@ export default function Projects({ data }) {
         if (body) {
           const elements = body.map((item) => {
             if (item.listItem === "bullet") {
-              return <li>{item.children[0].text}</li>;
+              return <li key={item._key}>{item.children[0].text}</li>;
             }
             if (item.listItem !== "bullet") {
-              return <p>{item.children[0].text}</p>;
+              return <p key={item._key}>{item.children[0].text}</p>;
             }
           });
 
@@ -127,7 +127,6 @@ export default function Projects({ data }) {
             />
             <Title>{title}</Title>
             <Elements>{handleRenderElements()}</Elements>
-            {/* <Elements>{handleRenderElements(post)}</Elements> */}
           </Card>
         </Fade>
       );

@@ -70,7 +70,12 @@ export default function Header({
           handleToggleMenu={handleToggleMenu}
           menuActive={menuActive}
         />
-        <Menu handleToggleMenu={handleToggleMenu} menuActive={menuActive} />
+        <Menu
+          handleToggleMenu={handleToggleMenu}
+          menuActive={menuActive}
+          backgroundPrimary={backgroundPrimary}
+          backgroundSecondary={backgroundSecondary}
+        />
       </Wrapper>
     </Container>
   );
