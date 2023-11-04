@@ -10,6 +10,7 @@ const Modal = styled.div`
   align-items: center;
   background: rgba(85, 255, 255, 0.85);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   opacity: 0;
   pointer-events: none;
   z-index: 200;
