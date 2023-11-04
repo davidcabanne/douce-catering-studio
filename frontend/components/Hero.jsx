@@ -124,6 +124,8 @@ export default function Hero({ data }) {
           <Image
             alt={alt}
             src={urlFor(sourceUrl).url()}
+            priority={true}
+            quality={75}
             width={1440}
             height={828}
             sizes="(max-width: 300px) 300px, 100vw"
