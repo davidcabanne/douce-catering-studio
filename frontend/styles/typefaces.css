@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "Kickers";
+  font-display: swap;
+  src: url("/fonts/kickers-regular-webfont.woff2") format("woff2"),
+    url("/fonts/kickers-regular-webfont.woff") format("woff");
+  font-style: normal;
+}
