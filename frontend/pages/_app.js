@@ -132,10 +132,8 @@ function MyApp({ Component, pageProps }) {
 
   const headDescription =
     "Douce est un studio de traiteur et design culinaire basé à Bordeaux";
-  const headImage_secure_url =
-    "https://doucecateringstudio.local/wp-content/uploads/2023/10/openGraph.png";
-  const headImage =
-    "http://doucecateringstudio.local/wp-content/uploads/2023/10/openGraph.png";
+  const headImage_secure_url = "/images/openGraph.png";
+  const headImage = "/images/openGraph.png";
 
   return (
     <>
