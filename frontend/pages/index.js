@@ -2,15 +2,13 @@ import groq from "groq";
 import client from "../client";
 
 import Layout from "../components/Layout";
-import Hero from "../components/Hero";
+import Hero from "../components/Home/Hero";
 
 export default function Home({ homeContent }) {
   return (
-    <>
-      <Layout>
-        <Hero data={homeContent} />
-      </Layout>
-    </>
+    <Layout>
+      <Hero data={homeContent} />
+    </Layout>
   );
 }
 
@@ -18,9 +16,11 @@ export async function getStaticProps() {
   const homeContent = await client.fetch(groq`
       *[_type == "home" ]
     `);
+
   return {
     props: {
       homeContent,
+      revalidate: 10,
     },
   };
 }

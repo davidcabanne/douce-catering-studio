@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import client from "../client";
-import imageUrlBuilder from "@sanity/image-url";
 
-import styled, { keyframes } from "styled-components";
-import * as _var from "./../styles/variables";
+import styled from "styled-components";
+import * as _var from "../../styles/variables";
 
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
+import Picture from "./Picture";
 
 const Section = styled.section`
   background: linear-gradient(90deg, #3eb384, #3e92b3);
@@ -21,30 +16,6 @@ const Container = styled.div`
   height: 100dvh;
   display: flex;
   overflow: hidden;
-`;
-
-const fadeIn = keyframes`
-0% {
-  opacity: 0;
-}
-100% {
-  opacity: 1;
-}
-`;
-
-const ImageSettings = styled.div`
-  position: relative;
-
-  & img {
-    position: relative;
-    width: 100vw;
-    height: 120vh;
-    object-fit: cover;
-    object-position: center;
-    z-index: 2;
-    transition: transform 500ms ${_var.cubicBezier};
-    animation: ${fadeIn} 750ms ${_var.cubicBezier} forwards;
-  }
 `;
 
 const Inputs = styled.div`
@@ -119,20 +90,7 @@ export default function Hero({ data }) {
       const { _id, alt } = item;
       const sourceUrl = item.Image.asset._ref;
 
-      return (
-        <ImageSettings key={_id}>
-          <Image
-            alt={alt}
-            src={urlFor(sourceUrl).url()}
-            priority={true}
-            quality={75}
-            width={1440}
-            height={828}
-            sizes="(max-width: 300px) 300px, 100vw"
-            style={{ transform: `translateX(${index * -100}%)` }}
-          />
-        </ImageSettings>
-      );
+      return <Picture key={_id} alt={alt} src={sourceUrl} index={index} />;
     });
     return imgs;
   };
