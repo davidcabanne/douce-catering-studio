@@ -27,6 +27,7 @@ export default defineType({
       type: 'image',
       options: {
         hotspot: true,
+        metadata: ['blurhash', 'lqip', 'palette'],
       },
       validation: (Rule) => Rule.required(),
     }),
