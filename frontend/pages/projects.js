@@ -3,7 +3,6 @@ import Image from "next/image";
 import * as _var from "../styles/variables";
 import groq from "groq";
 import client from "../client";
-import imageUrlBuilder from "@sanity/image-url";
 
 import { Fade } from "react-awesome-reveal";
 
@@ -18,10 +17,6 @@ import {
   Elements,
   Ul,
 } from "../components/Projects/styles";
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
 
 export default function Projects({ data }) {
   const [posts, setPosts] = useState([]);
@@ -57,7 +52,10 @@ export default function Projects({ data }) {
       }
 
       const { _id, title, imageDescription, body } = post;
-      const src = post.Image.asset._ref;
+      const src = post?.Image.url;
+      const lqip = post?.Image.metadata.lqip;
+      const blurHash = post?.Image.metadata.blurHash;
+      const palette = post?.Image.metadata.palette;
 
       const handleRenderElements = () => {
         if (body) {
@@ -119,11 +117,13 @@ export default function Projects({ data }) {
             }}
           >
             <Image
-              src={urlFor(src).url()}
+              src={src}
               sizes="(max-width: 300px) 300px, 100vw"
               alt={imageDescription}
               width={1440}
               height={1440}
+              placeholder="blur"
+              blurDataURL={lqip}
             />
             <Title>{title}</Title>
             <Elements>{handleRenderElements()}</Elements>
@@ -176,6 +176,17 @@ export default function Projects({ data }) {
 export async function getStaticProps() {
   const data = await client.fetch(groq`
       *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
+      {
+        ...,
+        "Image": Image.asset->{
+          url,
+          metadata {
+            lqip,
+            blurHash,
+            palette,
+          }
+        }
+      }
     `);
   return {
     props: {

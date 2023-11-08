@@ -1,13 +1,7 @@
 import Image from "next/image";
-import imageUrlBuilder from "@sanity/image-url";
-import client from "../../client";
 
 import styled, { keyframes } from "styled-components";
 import * as _var from "../../styles/variables";
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
 
 const fadeIn = keyframes`
 0% {
@@ -33,17 +27,19 @@ const Container = styled.div`
   }
 `;
 
-const Picture = ({ alt, src, index }) => {
+const Picture = ({ alt, src, lqip, blurHash, index }) => {
   return (
     <Container>
       <Image
         alt={alt}
-        src={urlFor(src).url()}
+        src={src}
         priority={true}
         quality={100}
         width={1440}
         height={828}
         sizes="(max-width: 300px) 300px, 100vw"
+        placeholder="blur"
+        blurDataURL={lqip}
         style={{ transform: `translateX(${index * -100}%)` }}
       />
     </Container>

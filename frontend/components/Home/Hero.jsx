@@ -85,12 +85,23 @@ export default function Hero({ data }) {
     setIndex(itemIndex);
   };
 
-  const renderImgs = (data) => {
+  const handleRenderImgs = (data) => {
     const imgs = data?.map((item) => {
       const { _id, alt } = item;
-      const sourceUrl = item.Image.asset._ref;
+      const url = item.Image.url;
+      const lqip = item.Image.metadata.lqip;
+      const blurHash = item.Image.metadata.blurHash;
 
-      return <Picture key={_id} alt={alt} src={sourceUrl} index={index} />;
+      return (
+        <Picture
+          key={_id}
+          alt={alt}
+          src={url}
+          lqip={lqip}
+          blurHash={blurHash}
+          index={index}
+        />
+      );
     });
     return imgs;
   };
@@ -113,7 +124,7 @@ export default function Hero({ data }) {
   return (
     <Section>
       <Container>
-        {renderImgs(data)}
+        {handleRenderImgs(data)}
         <Inputs>{renderInputs(data)}</Inputs>
       </Container>
     </Section>

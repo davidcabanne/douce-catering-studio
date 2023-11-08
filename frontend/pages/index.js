@@ -4,22 +4,32 @@ import client from "../client";
 import Layout from "../components/Layout";
 import Hero from "../components/Home/Hero";
 
-export default function Home({ homeContent }) {
+export default function Home({ content }) {
   return (
     <Layout>
-      <Hero data={homeContent} />
+      <Hero data={content} />
     </Layout>
   );
 }
 
 export async function getStaticProps() {
-  const homeContent = await client.fetch(groq`
-      *[_type == "home" ]
+  const content = await client.fetch(groq`
+  *[_type == "home"] {
+    ...,
+    "Image": Image.asset->{
+      url,
+      metadata {
+        lqip,
+        blurHash,
+        palette,
+      }
+    }
+  }
     `);
 
   return {
     props: {
-      homeContent,
+      content,
       revalidate: 10,
     },
   };
